@@ -1,14 +1,18 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-// Create a new Mongoose connection
-mongoose.connect('mongodb://localhost/food-donation-app', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+const MONGODB_URI = 'mongodb://localhost:27017/food-donations';
 
-    // These options are required to avoid deprecation warnings
-    useCreateIndex: true,
-});
+const connectDB = async () => {
+    try {
+        await mongoose.connect(MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log('Connected to MongoDB');
+    } catch (err) {
+        console.error(err);
+        process.exit(1);
+    }
+};
 
-// Define the Mongoose schema and models
-const Schema = mongoose.Schema;
-const ObjectId = Schema.Types.ObjectId;
+export default connectDB;

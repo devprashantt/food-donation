@@ -1,22 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(formData);
+  }
+
   return (
     <div class="container">
       <div class="wrapper">
         <form>
           <h1 className="login__heading">Login</h1>
           <p>If you are already a member, easily log in</p>
-          <input type="email" id="email" placeholder="Email"></input>
 
-          <input type="password" id="password" placeholder="Password"></input>
-
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter your email..."
+            id="email"
+          />
+          <input
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Enter password..."
+            id="password"
+          />
           <a href="#">Forgot my password</a>
-          <button className="main__button" type="submit" id="login-btn">
+          <button
+            className="main__button"
+            type="submit"
+            id="login-btn"
+            onClick={handleSubmit}
+          >
             Log in
           </button>
+
           <div class="or">
             <hr></hr>
             OR
