@@ -1,4 +1,4 @@
-.vision{
+.vision {
     display: flex;
     height: 60vh;
     padding: 30px 60px;
@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 
-.vision-text{
+.vision-text {
     width: 50%;
     height: 55vh;
     display: flex;
@@ -16,36 +16,36 @@
 
 
 
-.vision-heading{
-    color: black;   
-    font-size: 5rem;
+.vision-heading {
+    color: black;
+    font-size: 1rem;
     margin-bottom: 10px;
 }
 
-.vision-subheading{
-    font-size: 2.5rem;
-    font-weight: 350;
+.vision-subheading {
+    font-size: 1.5rem;
+    font-weight: 150;
 }
 
-.vision-img{
+.vision-img {
     background-image: url("../../assets/info-img.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 45%;
     height: 55vh;
-    
+
 }
 
 @media (max-width: 998px) {
-    .aboutus{
+    .aboutus {
         flex-direction: column;
     }
 }
 
 
 @media (max-width: 520px) {
-    .aboutus{
+    .aboutus {
         flex-direction: column;
     }
 }

@@ -1,4 +1,4 @@
-.aboutus{
+.aboutus {
     display: flex;
     height: 60vh;
     padding: 30px 60px;
@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 
-.info-text{
+.info-text {
     width: 50%;
     height: 55vh;
     display: flex;
@@ -16,36 +16,36 @@
 
 
 
-.info-heading{
-    color: black;   
-    font-size: 5rem;
-    margin-bottom: 10px;
+.info-heading {
+    color: black;
+    font-size: 3rem;
+    margin-bottom: 20px;
 }
 
-.info-subheading{
-    font-size: 2.5rem;
+.info-subheading {
+    font-size: 1.5rem;
     font-weight: 350;
 }
 
-.info-img{
+.info-img {
     background-image: url("../../assets/info-img.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 45%;
     height: 55vh;
-    
+
 }
 
 @media (max-width: 998px) {
-    .aboutus{
+    .aboutus {
         flex-direction: column;
     }
 }
 
 
 @media (max-width: 520px) {
-    .aboutus{
+    .aboutus {
         flex-direction: column;
     }
 }

@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
 
 * {
- 
+
   font-family: Roboto, sans-serif;
-  
+
 }
 
 body {
- margin: 0px;
- font-size: 1.5rem;
+  margin: 0px;
+  font-size: 1.5rem;
 }
 
 .signup_container {
@@ -22,7 +22,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 50%;
-  height: 100vh;  
+  height: 100vh;
   /* background-color: #3C3C3C; */
 }
 
@@ -31,11 +31,11 @@ form {
   flex-direction: column;
   /* width: 400px; */
   justify-content: space-around;
-  
+
 }
 
 .signup_main-img {
-background-image: url(../assets/images/signup.jpg) ;
+  background-image: url(../assets/images/signup.jpg);
   background-size: cover;
   width: 50%;
   /* height: 100%; */
@@ -54,12 +54,17 @@ background-image: url(../assets/images/signup.jpg) ;
   color: #225B5C;
   margin-bottom: 40px;
 }
+
 .pass-icon {
   display: flex;
   position: relative;
   /* width: 250px; */
 }
-#email, #password, #name,#phone{
+
+#email,
+#password,
+#name,
+#phone {
   height: 70px;
   width: auto;
   /* border-radius: 15px; */
@@ -67,18 +72,20 @@ background-image: url(../assets/images/signup.jpg) ;
   /* border: 1px solid #919191; */
   margin-bottom: 25px;
   position: relative;
-  
+
 }
-.signup_wrapper input{
-  outline:0;
+
+.signup_wrapper input {
+  outline: 0;
   font-size: 1.2rem;
   border-width: 0 0 5px;
   border-color: #225B5C
 }
+
 input:focus {
   border-color: #A5D0A8;
- 
-  
+
+
 }
 
 /* .pass-icon img {
@@ -116,35 +123,36 @@ a {
 }
 
 .login {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items:first baseline;
-    padding-top: 20px;
-    
-  
-  }
-  
-  .login-btn {
-    height: 30px;
-    padding: 5px 15px;
-    display: flex;
-    align-items: center;
-    font-size: 0.75rem;
-    font-weight: bold;
-    background-color: white;
-    border: 1px solid #225B5C;
-    border-radius: 10px;
-    color: #225B5C;
-    transition: 0.5s;
-  }
-  
-  .login p {
-    margin: 0 11px 0;
-    font-size: 1rem;
-  }
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: first baseline;
+  padding-top: 20px;
 
 
-button:hover, #login-btn:hover {
+}
+
+.login-btn {
+  height: 30px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #225B5C;
+  border-radius: 10px;
+  color: #225B5C;
+  transition: 0.5s;
+}
+
+.login p {
+  margin: 0 11px 0;
+  font-size: 1rem;
+}
+
+
+button:hover,
+#login-btn:hover {
   transform: scale(1.1);
 }

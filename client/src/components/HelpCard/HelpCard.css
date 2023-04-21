@@ -1,5 +1,5 @@
-.helpcard{
-    margin:30px 80px;
+.helpcard {
+    margin: 30px 80px;
     padding: 60px;
     background-color: #f5f5f5;
     align-items: center;
@@ -8,13 +8,13 @@
 }
 
 
-.help-heading{
+.help-heading {
     text-align: center;
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: 500;
 }
 
-.help-heading span{
+.help-heading span {
     color: red;
     font-weight: 600;
 }

@@ -1,4 +1,4 @@
-.partner-page{
+.partner-page {
     display: flex;
     align-items: center;
     text-align: center;
@@ -8,13 +8,13 @@
 }
 
 
-.partner{
+.partner {
     display: flex;
     padding: 10px;
     align-items: center;
     justify-content: space-around;
 }
 
-.title{
-    font-size: 3.5rem;
+.title {
+    font-size: 2rem;
 }
