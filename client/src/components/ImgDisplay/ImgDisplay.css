@@ -1,0 +1,45 @@
+.first-display{
+    background-image: url("../../assets/ImgDisplay.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+    justify-content: center;
+}
+.img-text{
+    position: relative;
+    text-align: center;
+    top: 440px;
+    font-size: 70px;
+    color: white;
+}
+.img-text span{
+    color: red;
+}
+
+h3{
+    position: relative;
+    text-align: center;
+    top: 443px;
+    font-size: 25px;
+    color: white;
+    font-weight: 300;
+}
+
+.btn{
+    padding: 4.5px 18.5px;
+    font-size: 3rem;
+    border: 1.5px solid transparent;
+    justify-content: center;
+    align-items: center;
+    background: red;
+    color: white;
+    position: relative;
+    top: 455px;
+    text-align: center;
+    left: 43.5%;
+}
+.btn:hover{
+    background-color: coral;
+    cursor: pointer;
+}

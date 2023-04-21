@@ -1,12 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
 
 const Login = () => {
   return (
-    <div>
-      Login or <Link to="/signup">Signup</Link>
-    </div>
-  );
-};
+    <div>Login</div>
+  )
+}
 
 export default Login;
