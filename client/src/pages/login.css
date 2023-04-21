@@ -107,6 +107,7 @@ a {
 }
 
 #login-btn {
+  width: 100%;
   margin: 20px 0;
   height: 70px;
   border-radius: 15px;

@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
 // Route to get data for a specific user
 router.get('/:userId/dashboard', (req, res) => {
@@ -8,4 +8,4 @@ router.get('/:userId/dashboard', (req, res) => {
     // Return the data as a response
 });
 
-module.exports = router;
+export default router;

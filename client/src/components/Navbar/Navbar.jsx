@@ -4,7 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ token }) => {
   const [showMenu, setShowMenu] = useState(false);
   const handleClick = () => {
     setShowMenu(!showMenu);
@@ -63,9 +63,23 @@ const Navbar = () => {
       </div>
 
       <div className="header-login">
-        <Link to="/signup">
-          <button className="nav-btn">Donate Now</button>
-        </Link>
+        {
+          // if token is present then show logout button else show login and signup button
+          token ? (
+            <Link to="/dashboard">
+              <button className="btn btn-primary">Dashboard</button>
+            </Link>
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="btn btn-primary">Login</button>
+              </Link>
+              <Link to="/signup">
+                <button className="btn btn-primary">Signup</button>
+              </Link>
+            </>
+          )
+        }
         <div className="hamburger-menu">
           <a href="#" onClick={handleClick}>
             <GiHamburgerMenu />

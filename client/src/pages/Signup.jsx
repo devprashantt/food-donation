@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import axios from "axios";
 import "./signup.css";
 
 const Signup = () => {
@@ -10,14 +12,30 @@ const Signup = () => {
     number: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      number: formData.number,
+    };
+    try {
+      axios.post("http://localhost:3000/signup", data).then((response) => {
+        console.log(response);
+      });
+
+      navigate("/"); // redirect to home page
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (

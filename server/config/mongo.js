@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = 'mongodb://localhost:27017/food-donations';
+const MONGODB_URI = 'mongodb://127.0.0.1:27017/food-donations';
 
 const connectDB = async () => {
     try {

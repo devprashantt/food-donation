@@ -10,16 +10,14 @@ const userSchema = new mongoose.Schema(
         },
         password: {
             type: String,
-            required: function () {
-                return !this.isGoogleUser;
-            }
+            required: true,
         },
         name: {
             type: String,
             required: true,
         },
-        phone: {
-            type: Number,
+        number: {
+            type: String,
             required: true,
         }
     },

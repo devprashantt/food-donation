@@ -1,6 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const Food = require("../models/food");
+import { Router } from "express";
+const router = Router();
+import Food from "../models/food";
 
 // Route to handle food donation form submission
 router.post("/fooddonation", async (req, res) => {
@@ -24,4 +24,4 @@ router.post("/fooddonation", async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

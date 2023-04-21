@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export async function signUp(req, res) {
-    const { email, password, name, phone } = req.body;
+    const { email, password, name, number } = req.body;
 
     try {
         // Check if the user already exists
@@ -22,7 +22,7 @@ export async function signUp(req, res) {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         // Create the user in the database
-        const newUser = await User.create({ email, password: hashedPassword, name, isOrganizer, college });
+        const newUser = await User.create({ email, password: hashedPassword, name, number });
 
         // Generate a JWT token
         const token = jwt.sign({ email: newUser.email, id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });

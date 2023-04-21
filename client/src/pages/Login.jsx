@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
@@ -8,15 +9,31 @@ const Login = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(formData);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = formData;
+    try {
+      const res = await axios.post("http://localhost:3000/signin", {
+        email,
+        password,
+      });
+      console.log(res);
+      const { token } = res.data.token;
+
+      localStorage.setItem("token", token);
+
+      navigate("/"); // redirect to home page
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div class="container">
@@ -41,14 +58,16 @@ const Login = () => {
             id="password"
           />
           <a href="#">Forgot my password</a>
-          <button
-            className="main__button"
-            type="submit"
-            id="login-btn"
-            onClick={handleSubmit}
-          >
-            Log in
-          </button>
+          <Link to={"/home"}>
+            <button
+              className="main__button"
+              type="submit"
+              id="login-btn"
+              onClick={handleSubmit}
+            >
+              Log in
+            </button>
+          </Link>
 
           <div class="or">
             <hr></hr>
