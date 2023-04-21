@@ -64,7 +64,7 @@ const Navbar = () => {
 
       <div className="header-login">
         <Link to="/signup">
-          <button>Donate Now</button>
+          <button className="nav-btn">Donate Now</button>
         </Link>
         <div className="hamburger-menu">
           <a href="#" onClick={handleClick}>

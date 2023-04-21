@@ -1,0 +1,29 @@
+.footer{
+    display: flex;
+    padding: 3rem;
+    background-color: #f5f5f5;
+    justify-content: space-around;
+}
+
+.heading-footer{
+    font-size: 3rem;
+    padding: 1rem;
+    font-weight: 800;
+}
+
+.footer-h4{
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: rgb(0, 0, 0);
+    margin-bottom: 10px;
+}
+
+.footer-p{
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    color: #918f8f;
+}
+
+.icons{
+    display: flex;
+}
