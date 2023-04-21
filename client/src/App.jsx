@@ -14,6 +14,9 @@ import Signup from "./pages/Signup";
 import Layout from "./dashboard/Layout";
 import Navbar from "./components/Navbar/Navbar";
 
+import Profile from "./dashboard/Profile";
+import Food from "./dashboard/Food";
+
 function App() {
   const token = localStorage.getItem("token");
 
@@ -37,8 +40,8 @@ function App() {
         {token ? (
           <Route element={<Layout />}>
             <Route path="/dashboard" element={<FoodDonation />} />
-            <Route path="/dashboard/profile" element={<FoodDonation />} />
-            <Route path="/dashboard/admin" element={<FoodDonation />} />
+            <Route path="/dashboard/profile" element={<Profile />} />
+            <Route path="/dashboard/food" element={<Food />} />
           </Route>
         ) : (
           <Route path="*" element={<Login />} />

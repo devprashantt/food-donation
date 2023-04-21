@@ -12,12 +12,12 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
       path: "/dashboard",
     },
     {
-      text: "Events",
-      path: "/dashboard/profile",
+      text: "Food",
+      path: "/dashboard/food",
     },
     {
-      text: "Scheduler",
-      path: "/dashboard/admin",
+      text: "Profile",
+      path: "/dashboard/profile",
     },
   ];
 
@@ -54,12 +54,11 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
           gap: "0.5rem",
         }}
       >
-        <div className="sidebar__header__avatar">Logo</div>
         <div className="sidebar__header__logo">
           <Link to="/">
             <h1>
-              <span style={{ color: "#000000" }}>Event</span>{" "}
-              <span style={{ color: "#7848f4" }}>Hive</span>
+              <span style={{ color: "#000000" }}>Food</span>{" "}
+              <span style={{ color: "#7848f4" }}>Donation</span>
             </h1>
           </Link>
         </div>
