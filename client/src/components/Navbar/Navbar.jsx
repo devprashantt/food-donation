@@ -13,8 +13,8 @@ const Navbar = ({ token }) => {
     <nav className="main">
       <div className="logo">
         <h2>
-          <span>F</span>ood
-          <span>D</span>onation
+          ShareThe
+          <span>Meal</span>
         </h2>
       </div>
       <div className={showMenu ? "nav-items mobile-menu-link" : "nav-items"}>
@@ -67,17 +67,17 @@ const Navbar = ({ token }) => {
           // if token is present then show logout button else show login and signup button
           token ? (
             <Link to="/dashboard">
-              <button className="btn btn-primary">Dashboard</button>
+              <button className="btn">Dashboard</button>
             </Link>
           ) : (
-            <>
+            <div className="l-btn">
               <Link to="/login">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn">Login</button>
               </Link>
               <Link to="/signup">
-                <button className="btn btn-primary">Signup</button>
+                <button className="btn">Signup</button>
               </Link>
-            </>
+            </div>
           )
         }
         <div className="hamburger-menu">

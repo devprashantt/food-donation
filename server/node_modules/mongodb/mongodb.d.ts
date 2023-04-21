@@ -81,6 +81,7 @@ export declare abstract class AbstractCursor<TSchema = any, CursorEvents extends
      * If the iterator returns `false`, iteration will stop.
      *
      * @param iterator - The iteration callback.
+     * @deprecated - Will be removed in a future release. Use for await...of instead.
      */
     forEach(iterator: (doc: TSchema) => boolean | void): Promise<void>;
     close(): Promise<void>;
@@ -162,7 +163,7 @@ export declare abstract class AbstractCursor<TSchema = any, CursorEvents extends
     /**
      * Set the batch size for the cursor.
      *
-     * @param value - The number of documents to return per batch. See {@link https://docs.mongodb.com/manual/reference/command/find/|find command documentation}.
+     * @param value - The number of documents to return per batch. See {@link https://www.mongodb.com/docs/manual/reference/command/find/|find command documentation}.
      */
     batchSize(value: number): this;
     /**
@@ -242,7 +243,10 @@ export declare type AddToSetOperators<Type> = {
     $each?: Array<Flatten<Type>>;
 };
 
-/** @public */
+/**
+ * @public
+ * @deprecated Use the createUser command directly instead.
+ */
 export declare interface AddUserOptions extends CommandOperationOptions {
     /** Roles associated with the created user */
     roles?: string | string[] | RoleSpecification | RoleSpecification[];
@@ -309,6 +313,8 @@ export declare class Admin {
      * @param username - The username for the new user
      * @param passwordOrOptions - An optional password for the new user, or the options for the command
      * @param options - Optional settings for the command
+     * @deprecated Use the createUser command in `db.command()` instead.
+     * @see https://www.mongodb.com/docs/manual/reference/command/createUser/
      */
     addUser(username: string, passwordOrOptions?: string | AddUserOptions, options?: AddUserOptions): Promise<Document>;
     /**
@@ -347,7 +353,7 @@ export declare class Admin {
 export declare interface AggregateOptions extends CommandOperationOptions {
     /** allowDiskUse lets the server know if it can use disk to store temporary results for the aggregation (requires mongodb 2.6 \>). */
     allowDiskUse?: boolean;
-    /** The number of documents to return per batch. See [aggregation documentation](https://docs.mongodb.com/manual/reference/command/aggregate). */
+    /** The number of documents to return per batch. See [aggregation documentation](https://www.mongodb.com/docs/manual/reference/command/aggregate). */
     batchSize?: number;
     /** Allow driver to bypass schema validation in MongoDB 3.2 or higher. */
     bypassDocumentValidation?: boolean;
@@ -499,6 +505,8 @@ export declare interface Auth {
     password?: string;
 }
 
+/* Excluded from this release type: AuthContext */
+
 /** @public */
 export declare const AuthMechanism: Readonly<{
     readonly MONGODB_AWS: "MONGODB-AWS";
@@ -509,27 +517,26 @@ export declare const AuthMechanism: Readonly<{
     readonly MONGODB_SCRAM_SHA1: "SCRAM-SHA-1";
     readonly MONGODB_SCRAM_SHA256: "SCRAM-SHA-256";
     readonly MONGODB_X509: "MONGODB-X509";
-    /* Excluded from this release type: MONGODB_OIDC */
+    /** @experimental */
+    readonly MONGODB_OIDC: "MONGODB-OIDC";
 }>;
 
 /** @public */
-export declare type AuthMechanism = typeof AuthMechanism[keyof typeof AuthMechanism];
+export declare type AuthMechanism = (typeof AuthMechanism)[keyof typeof AuthMechanism];
 
-/**
- * TODO: NODE-5035: Make OIDC properties public.
- *
- * @public
- * */
+/** @public */
 export declare interface AuthMechanismProperties extends Document {
     SERVICE_HOST?: string;
     SERVICE_NAME?: string;
     SERVICE_REALM?: string;
     CANONICALIZE_HOST_NAME?: GSSAPICanonicalizationValue;
     AWS_SESSION_TOKEN?: string;
-    /* Excluded from this release type: DEVICE_NAME */
-    /* Excluded from this release type: PRINCIPAL_NAME */
-    /* Excluded from this release type: REQUEST_TOKEN_CALLBACK */
-    /* Excluded from this release type: REFRESH_TOKEN_CALLBACK */
+    /** @experimental */
+    REQUEST_TOKEN_CALLBACK?: OIDCRequestFunction;
+    /** @experimental */
+    REFRESH_TOKEN_CALLBACK?: OIDCRefreshFunction;
+    /** @experimental */
+    PROVIDER_NAME?: 'aws';
 }
 
 /** @public */
@@ -556,7 +563,7 @@ export declare const AutoEncryptionLoggerLevel: Readonly<{
 }>;
 
 /** @public */
-export declare type AutoEncryptionLoggerLevel = typeof AutoEncryptionLoggerLevel[keyof typeof AutoEncryptionLoggerLevel];
+export declare type AutoEncryptionLoggerLevel = (typeof AutoEncryptionLoggerLevel)[keyof typeof AutoEncryptionLoggerLevel];
 
 /** @public */
 export declare interface AutoEncryptionOptions {
@@ -607,7 +614,7 @@ export declare interface AutoEncryptionOptions {
              * If present, an access token to authenticate with Azure.
              */
             accessToken: string;
-        };
+        } | Record<string, never>;
         /** Configuration options for using 'gcp' as your KMS provider */
         gcp?: {
             /** The service account email to authenticate */
@@ -761,7 +768,7 @@ export declare const BatchType: Readonly<{
 }>;
 
 /** @public */
-export declare type BatchType = typeof BatchType[keyof typeof BatchType];
+export declare type BatchType = (typeof BatchType)[keyof typeof BatchType];
 
 export { Binary }
 
@@ -934,19 +941,40 @@ export declare class BulkWriteResult {
     /* Excluded from this release type: __constructor */
     /** Evaluates to true if the bulk operation correctly executes */
     get ok(): number;
-    /** The number of inserted documents */
+    /**
+     * The number of inserted documents
+     * @deprecated Use insertedCount instead.
+     */
     get nInserted(): number;
-    /** Number of upserted documents */
+    /**
+     * Number of upserted documents
+     * @deprecated User upsertedCount instead.
+     */
     get nUpserted(): number;
-    /** Number of matched documents */
+    /**
+     * Number of matched documents
+     * @deprecated Use matchedCount instead.
+     */
     get nMatched(): number;
-    /** Number of documents updated physically on disk */
+    /**
+     * Number of documents updated physically on disk
+     * @deprecated Use modifiedCount instead.
+     */
     get nModified(): number;
-    /** Number of removed documents */
+    /**
+     * Number of removed documents
+     * @deprecated Use deletedCount instead.
+     */
     get nRemoved(): number;
-    /** Returns an array of all inserted ids */
+    /**
+     * Returns an array of all inserted ids
+     * @deprecated Use insertedIds instead.
+     */
     getInsertedIds(): Document[];
-    /** Returns an array of all upserted ids */
+    /**
+     * Returns an array of all upserted ids
+     * @deprecated Use upsertedIds instead.
+     */
     getUpsertedIds(): Document[];
     /** Returns the upserted id at the given index */
     getUpsertedIdAt(index: number): Document | undefined;
@@ -1300,19 +1328,19 @@ export declare interface ChangeStreamOptions extends Omit<AggregateOptions, 'wri
     maxAwaitTimeMS?: number;
     /**
      * Allows you to start a changeStream after a specified event.
-     * @see https://docs.mongodb.com/manual/changeStreams/#resumeafter-for-change-streams
+     * @see https://www.mongodb.com/docs/manual/changeStreams/#resumeafter-for-change-streams
      */
     resumeAfter?: ResumeToken;
     /**
      * Similar to resumeAfter, but will allow you to start after an invalidated event.
-     * @see https://docs.mongodb.com/manual/changeStreams/#startafter-for-change-streams
+     * @see https://www.mongodb.com/docs/manual/changeStreams/#startafter-for-change-streams
      */
     startAfter?: ResumeToken;
     /** Will start the changeStream after the specified operationTime. */
     startAtOperationTime?: OperationTime;
     /**
      * The number of documents to return per batch.
-     * @see https://docs.mongodb.com/manual/reference/command/aggregate
+     * @see https://www.mongodb.com/docs/manual/reference/command/aggregate
      */
     batchSize?: number;
     /**
@@ -1421,7 +1449,10 @@ export declare interface ChangeStreamUpdateDocument<TSchema extends Document = D
     fullDocumentBeforeChange?: TSchema;
 }
 
-/** @public */
+/**
+ * @public
+ * @see https://github.com/mongodb/specifications/blob/master/source/mongodb-handshake/handshake.rst#hello-command
+ */
 export declare interface ClientMetadata {
     driver: {
         name: string;
@@ -1429,14 +1460,21 @@ export declare interface ClientMetadata {
     };
     os: {
         type: string;
-        name: NodeJS.Platform;
-        architecture: string;
-        version: string;
+        name?: NodeJS.Platform;
+        architecture?: string;
+        version?: string;
     };
     platform: string;
-    version?: string;
     application?: {
         name: string;
+    };
+    /** FaaS environment information */
+    env?: {
+        name: 'aws.lambda' | 'gcp.func' | 'azure.func' | 'vercel';
+        timeout_sec?: Int32;
+        memory_mb?: Int32;
+        region?: string;
+        url?: string;
     };
 }
 
@@ -1725,7 +1763,7 @@ export declare class Collection<TSchema extends Document = Document> {
      * @param update - The update operations to be applied to the document
      * @param options - Optional settings for the command
      */
-    updateOne(filter: Filter<TSchema>, update: UpdateFilter<TSchema> | Partial<TSchema>, options?: UpdateOptions): Promise<UpdateResult>;
+    updateOne(filter: Filter<TSchema>, update: UpdateFilter<TSchema> | Partial<TSchema>, options?: UpdateOptions): Promise<UpdateResult<TSchema>>;
     /**
      * Replace a document in a collection with another document
      *
@@ -1733,7 +1771,7 @@ export declare class Collection<TSchema extends Document = Document> {
      * @param replacement - The Document that replaces the matching document
      * @param options - Optional settings for the command
      */
-    replaceOne(filter: Filter<TSchema>, replacement: WithoutId<TSchema>, options?: ReplaceOptions): Promise<UpdateResult | Document>;
+    replaceOne(filter: Filter<TSchema>, replacement: WithoutId<TSchema>, options?: ReplaceOptions): Promise<UpdateResult<TSchema> | Document>;
     /**
      * Update multiple documents in a collection
      *
@@ -1741,7 +1779,7 @@ export declare class Collection<TSchema extends Document = Document> {
      * @param update - The update operations to be applied to the documents
      * @param options - Optional settings for the command
      */
-    updateMany(filter: Filter<TSchema>, update: UpdateFilter<TSchema>, options?: UpdateOptions): Promise<UpdateResult>;
+    updateMany(filter: Filter<TSchema>, update: UpdateFilter<TSchema>, options?: UpdateOptions): Promise<UpdateResult<TSchema>>;
     /**
      * Delete a document from a collection
      *
@@ -1839,7 +1877,7 @@ export declare class Collection<TSchema extends Document = Document> {
      * error.
      *
      * **Note**: Unlike {@link Collection#createIndex| createIndex}, this function takes in raw index specifications.
-     * Index specifications are defined {@link http://docs.mongodb.org/manual/reference/command/createIndexes/| here}.
+     * Index specifications are defined {@link https://www.mongodb.com/docs/manual/reference/command/createIndexes/| here}.
      *
      * @param indexSpecs - An array of index specifications to be created
      * @param options - Optional settings for the command
@@ -1923,18 +1961,18 @@ export declare class Collection<TSchema extends Document = Document> {
      * | `$near`    | [`$geoWithin`][2] with [`$center`][3] |
      * | `$nearSphere` | [`$geoWithin`][2] with [`$centerSphere`][4] |
      *
-     * [1]: https://docs.mongodb.com/manual/reference/operator/query/expr/
-     * [2]: https://docs.mongodb.com/manual/reference/operator/query/geoWithin/
-     * [3]: https://docs.mongodb.com/manual/reference/operator/query/center/#op._S_center
-     * [4]: https://docs.mongodb.com/manual/reference/operator/query/centerSphere/#op._S_centerSphere
+     * [1]: https://www.mongodb.com/docs/manual/reference/operator/query/expr/
+     * [2]: https://www.mongodb.com/docs/manual/reference/operator/query/geoWithin/
+     * [3]: https://www.mongodb.com/docs/manual/reference/operator/query/center/#op._S_center
+     * [4]: https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/#op._S_centerSphere
      *
      * @param filter - The filter for the count
      * @param options - Optional settings for the command
      *
-     * @see https://docs.mongodb.com/manual/reference/operator/query/expr/
-     * @see https://docs.mongodb.com/manual/reference/operator/query/geoWithin/
-     * @see https://docs.mongodb.com/manual/reference/operator/query/center/#op._S_center
-     * @see https://docs.mongodb.com/manual/reference/operator/query/centerSphere/#op._S_centerSphere
+     * @see https://www.mongodb.com/docs/manual/reference/operator/query/expr/
+     * @see https://www.mongodb.com/docs/manual/reference/operator/query/geoWithin/
+     * @see https://www.mongodb.com/docs/manual/reference/operator/query/center/#op._S_center
+     * @see https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/#op._S_centerSphere
      */
     countDocuments(filter?: Document, options?: CountDocumentsOptions): Promise<number>;
     /**
@@ -2025,7 +2063,7 @@ export declare class Collection<TSchema extends Document = Document> {
      *   });
      * ```
      *
-     * @param pipeline - An array of {@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/|aggregation pipeline stages} through which to pass change stream documents. This allows for filtering (using $match) and manipulating the change stream documents.
+     * @param pipeline - An array of {@link https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/|aggregation pipeline stages} through which to pass change stream documents. This allows for filtering (using $match) and manipulating the change stream documents.
      * @param options - Optional settings for the command
      * @typeParam TLocal - Type of the data being detected by the change stream
      * @typeParam TChange - Type of the whole change stream document emitted
@@ -2088,7 +2126,7 @@ export declare interface CollectionOptions extends BSONSerializeOptions, WriteCo
 
 /**
  * @public
- * @see https://docs.mongodb.org/manual/reference/command/collStats/
+ * @see https://www.mongodb.com/docs/manual/reference/command/collStats/
  */
 export declare interface CollStats extends Document {
     /** Namespace */
@@ -2158,6 +2196,7 @@ export declare class CommandFailedEvent {
     commandName: string;
     failure: Error;
     serviceId?: ObjectId;
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
     get hasServiceId(): boolean;
 }
@@ -2203,6 +2242,7 @@ export declare class CommandStartedEvent {
     address: string;
     connectionId?: string | number;
     serviceId?: ObjectId;
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
     get hasServiceId(): boolean;
 }
@@ -2220,6 +2260,7 @@ export declare class CommandSucceededEvent {
     commandName: string;
     reply: unknown;
     serviceId?: ObjectId;
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
     get hasServiceId(): boolean;
 }
@@ -2236,7 +2277,7 @@ export declare const Compressor: Readonly<{
 }>;
 
 /** @public */
-export declare type Compressor = typeof Compressor[CompressorName];
+export declare type Compressor = (typeof Compressor)[CompressorName];
 
 /** @public */
 export declare type CompressorName = keyof typeof Compressor;
@@ -2246,6 +2287,28 @@ export declare type Condition<T> = AlternativeType<T> | FilterOperators<Alternat
 
 /* Excluded from this release type: Connection */
 
+/* Excluded from this release type: CONNECTION_CHECK_OUT_FAILED */
+
+/* Excluded from this release type: CONNECTION_CHECK_OUT_STARTED */
+
+/* Excluded from this release type: CONNECTION_CHECKED_IN */
+
+/* Excluded from this release type: CONNECTION_CHECKED_OUT */
+
+/* Excluded from this release type: CONNECTION_CLOSED */
+
+/* Excluded from this release type: CONNECTION_CREATED */
+
+/* Excluded from this release type: CONNECTION_POOL_CLEARED */
+
+/* Excluded from this release type: CONNECTION_POOL_CLOSED */
+
+/* Excluded from this release type: CONNECTION_POOL_CREATED */
+
+/* Excluded from this release type: CONNECTION_POOL_READY */
+
+/* Excluded from this release type: CONNECTION_READY */
+
 /**
  * An event published when a connection is checked into the connection pool
  * @public
@@ -2254,6 +2317,7 @@ export declare type Condition<T> = AlternativeType<T> | FilterOperators<Alternat
 export declare class ConnectionCheckedInEvent extends ConnectionPoolMonitoringEvent {
     /** The id of the connection */
     connectionId: number | '<monitor>';
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2265,6 +2329,7 @@ export declare class ConnectionCheckedInEvent extends ConnectionPoolMonitoringEv
 export declare class ConnectionCheckedOutEvent extends ConnectionPoolMonitoringEvent {
     /** The id of the connection */
     connectionId: number | '<monitor>';
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2275,7 +2340,9 @@ export declare class ConnectionCheckedOutEvent extends ConnectionPoolMonitoringE
  */
 export declare class ConnectionCheckOutFailedEvent extends ConnectionPoolMonitoringEvent {
     /** The reason the attempt to check out failed */
-    reason: AnyError | string;
+    reason: string;
+    /* Excluded from this release type: error */
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2285,6 +2352,7 @@ export declare class ConnectionCheckOutFailedEvent extends ConnectionPoolMonitor
  * @category Event
  */
 export declare class ConnectionCheckOutStartedEvent extends ConnectionPoolMonitoringEvent {
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2299,6 +2367,8 @@ export declare class ConnectionClosedEvent extends ConnectionPoolMonitoringEvent
     /** The reason the connection was closed */
     reason: string;
     serviceId?: ObjectId;
+    /* Excluded from this release type: name */
+    /* Excluded from this release type: error */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2310,6 +2380,7 @@ export declare class ConnectionClosedEvent extends ConnectionPoolMonitoringEvent
 export declare class ConnectionCreatedEvent extends ConnectionPoolMonitoringEvent {
     /** A monotonically increasing, per-pool id for the newly created connection */
     connectionId: number | '<monitor>';
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2337,7 +2408,9 @@ export declare interface ConnectionOptions extends SupportedNodeConnectionOption
     credentials?: MongoCredentials;
     connectTimeoutMS?: number;
     tls: boolean;
+    /** @deprecated - Will not be able to turn off in the future. */
     keepAlive?: boolean;
+    /** @deprecated - Will not be configurable in the future. */
     keepAliveInitialDelay?: number;
     noDelay?: boolean;
     socketTimeoutMS?: number;
@@ -2355,6 +2428,7 @@ export declare interface ConnectionOptions extends SupportedNodeConnectionOption
 export declare class ConnectionPoolClearedEvent extends ConnectionPoolMonitoringEvent {
     /* Excluded from this release type: serviceId */
     interruptInUseConnections?: boolean;
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2364,6 +2438,7 @@ export declare class ConnectionPoolClearedEvent extends ConnectionPoolMonitoring
  * @category Event
  */
 export declare class ConnectionPoolClosedEvent extends ConnectionPoolMonitoringEvent {
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2375,6 +2450,7 @@ export declare class ConnectionPoolClosedEvent extends ConnectionPoolMonitoringE
 export declare class ConnectionPoolCreatedEvent extends ConnectionPoolMonitoringEvent {
     /** The options used to create this connection pool */
     options?: ConnectionPoolOptions;
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2400,11 +2476,12 @@ export declare type ConnectionPoolEvents = {
  * @public
  * @category Event
  */
-export declare class ConnectionPoolMonitoringEvent {
+export declare abstract class ConnectionPoolMonitoringEvent {
     /** A timestamp when the event was created  */
     time: Date;
     /** The address (host/port pair) of the pool */
     address: string;
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2431,6 +2508,7 @@ export declare interface ConnectionPoolOptions extends Omit<ConnectionOptions, '
  * @category Event
  */
 export declare class ConnectionPoolReadyEvent extends ConnectionPoolMonitoringEvent {
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2442,6 +2520,7 @@ export declare class ConnectionPoolReadyEvent extends ConnectionPoolMonitoringEv
 export declare class ConnectionReadyEvent extends ConnectionPoolMonitoringEvent {
     /** The id of the connection */
     connectionId: number | '<monitor>';
+    /* Excluded from this release type: name */
     /* Excluded from this release type: __constructor */
 }
 
@@ -2557,7 +2636,7 @@ export declare interface CreateIndexesOptions extends Omit<CommandOperationOptio
 export declare const CURSOR_FLAGS: readonly ["tailable", "oplogReplay", "noCursorTimeout", "awaitData", "exhaust", "partial"];
 
 /** @public */
-export declare type CursorFlag = typeof CURSOR_FLAGS[number];
+export declare type CursorFlag = (typeof CURSOR_FLAGS)[number];
 
 /** @public */
 export declare interface CursorStreamOptions {
@@ -2620,7 +2699,7 @@ export declare class Db {
     get namespace(): string;
     /**
      * Create a new collection on a server with the specified options. Use this to create capped collections.
-     * More information about command options available at https://docs.mongodb.com/manual/reference/command/create/
+     * More information about command options available at https://www.mongodb.com/docs/manual/reference/command/create/
      *
      * @param name - The name of the collection to create
      * @param options - Optional settings for the command
@@ -2715,6 +2794,8 @@ export declare class Db {
      * @param username - The username for the new user
      * @param passwordOrOptions - An optional password for the new user, or the options for the command
      * @param options - Optional settings for the command
+     * @deprecated Use the createUser command in `db.command()` instead.
+     * @see https://www.mongodb.com/docs/manual/reference/command/createUser/
      */
     addUser(username: string, passwordOrOptions?: string | AddUserOptions, options?: AddUserOptions): Promise<Document>;
     /**
@@ -2754,7 +2835,7 @@ export declare class Db {
      * - The first is to provide the schema that may be defined for all the collections within this database
      * - The second is to override the shape of the change stream document entirely, if it is not provided the type will default to ChangeStreamDocument of the first argument
      *
-     * @param pipeline - An array of {@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/|aggregation pipeline stages} through which to pass change stream documents. This allows for filtering (using $match) and manipulating the change stream documents.
+     * @param pipeline - An array of {@link https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/|aggregation pipeline stages} through which to pass change stream documents. This allows for filtering (using $match) and manipulating the change stream documents.
      * @param options - Optional settings for the command
      * @typeParam TSchema - Type of the data being detected by the change stream
      * @typeParam TChange - Type of the whole change stream document emitted
@@ -3128,7 +3209,7 @@ export declare class FindCursor<TSchema = any> extends AbstractCursor<TSchema> {
      * Allows disk use for blocking sort operations exceeding 100MB memory. (MongoDB 3.2 or higher)
      *
      * @remarks
-     * {@link https://docs.mongodb.com/manual/reference/command/find/#find-cmd-allowdiskuse | find command allowDiskUse documentation}
+     * {@link https://www.mongodb.com/docs/manual/reference/command/find/#find-cmd-allowdiskuse | find command allowDiskUse documentation}
      */
     allowDiskUse(allow?: boolean): this;
     /**
@@ -3153,7 +3234,7 @@ export declare class FindCursor<TSchema = any> extends AbstractCursor<TSchema> {
 
 /** @public */
 export declare interface FindOneAndDeleteOptions extends CommandOperationOptions {
-    /** An optional hint for query optimization. See the {@link https://docs.mongodb.com/manual/reference/command/update/#update-command-hint|update command} reference for more information.*/
+    /** An optional hint for query optimization. See the {@link https://www.mongodb.com/docs/manual/reference/command/update/#update-command-hint|update command} reference for more information.*/
     hint?: Document;
     /** Limits the fields to return for all matching documents. */
     projection?: Document;
@@ -3167,7 +3248,7 @@ export declare interface FindOneAndDeleteOptions extends CommandOperationOptions
 export declare interface FindOneAndReplaceOptions extends CommandOperationOptions {
     /** Allow driver to bypass schema validation in MongoDB 3.2 or higher. */
     bypassDocumentValidation?: boolean;
-    /** An optional hint for query optimization. See the {@link https://docs.mongodb.com/manual/reference/command/update/#update-command-hint|update command} reference for more information.*/
+    /** An optional hint for query optimization. See the {@link https://www.mongodb.com/docs/manual/reference/command/update/#update-command-hint|update command} reference for more information.*/
     hint?: Document;
     /** Limits the fields to return for all matching documents. */
     projection?: Document;
@@ -3187,7 +3268,7 @@ export declare interface FindOneAndUpdateOptions extends CommandOperationOptions
     arrayFilters?: Document[];
     /** Allow driver to bypass schema validation in MongoDB 3.2 or higher. */
     bypassDocumentValidation?: boolean;
-    /** An optional hint for query optimization. See the {@link https://docs.mongodb.com/manual/reference/command/update/#update-command-hint|update command} reference for more information.*/
+    /** An optional hint for query optimization. See the {@link https://www.mongodb.com/docs/manual/reference/command/update/#update-command-hint|update command} reference for more information.*/
     hint?: Document;
     /** Limits the fields to return for all matching documents. */
     projection?: Document;
@@ -3565,7 +3646,7 @@ export declare const GSSAPICanonicalizationValue: Readonly<{
 }>;
 
 /** @public */
-export declare type GSSAPICanonicalizationValue = typeof GSSAPICanonicalizationValue[keyof typeof GSSAPICanonicalizationValue];
+export declare type GSSAPICanonicalizationValue = (typeof GSSAPICanonicalizationValue)[keyof typeof GSSAPICanonicalizationValue];
 
 /** @public */
 export declare interface HedgeOptions {
@@ -3588,6 +3669,10 @@ export declare class HostAddress {
     static fromString(this: void, s: string): HostAddress;
     static fromHostPort(host: string, port: number): HostAddress;
     static fromSrvRecord({ name, port }: SrvRecord): HostAddress;
+    toHostPort(): {
+        host: string;
+        port: number;
+    };
 }
 
 /** @public */
@@ -3874,6 +3959,13 @@ export declare interface ListIndexesOptions extends Omit<CommandOperationOptions
     batchSize?: number;
 }
 
+/* Excluded from this release type: Log */
+
+/* Excluded from this release type: LogConvertible */
+
+/* Excluded from this release type: Loggable */
+
+/* Excluded from this release type: LoggableEvent */
 export { Long }
 
 /** @public */
@@ -4011,8 +4103,10 @@ export declare class MongoClient extends TypedEventEmitter<MongoClientEvents> {
     /* Excluded from this release type: s */
     /* Excluded from this release type: topology */
     /* Excluded from this release type: mongoLogger */
+    /* Excluded from this release type: connectionLock */
     /* Excluded from this release type: [kOptions] */
     constructor(url: string, options?: MongoClientOptions);
+    /** @see MongoOptions */
     get options(): Readonly<MongoOptions>;
     get serverApi(): Readonly<ServerApi | undefined>;
     /* Excluded from this release type: monitorCommands */
@@ -4028,6 +4122,7 @@ export declare class MongoClient extends TypedEventEmitter<MongoClientEvents> {
      * @see docs.mongodb.org/manual/reference/connection-string/
      */
     connect(): Promise<this>;
+    /* Excluded from this release type: _connect */
     /**
      * Close the client and its underlying connections
      *
@@ -4047,7 +4142,7 @@ export declare class MongoClient extends TypedEventEmitter<MongoClientEvents> {
      * @remarks
      * The programmatically provided options take precedence over the URI options.
      *
-     * @see https://docs.mongodb.org/manual/reference/connection-string/
+     * @see https://www.mongodb.com/docs/manual/reference/connection-string/
      */
     static connect(url: string, options?: MongoClientOptions): Promise<MongoClient>;
     /** Starts a new session on the server */
@@ -4073,7 +4168,7 @@ export declare class MongoClient extends TypedEventEmitter<MongoClientEvents> {
      * - The first is to provide the schema that may be defined for all the data within the current cluster
      * - The second is to override the shape of the change stream document entirely, if it is not provided the type will default to ChangeStreamDocument of the first argument
      *
-     * @param pipeline - An array of {@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/|aggregation pipeline stages} through which to pass change stream documents. This allows for filtering (using $match) and manipulating the change stream documents.
+     * @param pipeline - An array of {@link https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/|aggregation pipeline stages} through which to pass change stream documents. This allows for filtering (using $match) and manipulating the change stream documents.
      * @param options - Optional settings for the command
      * @typeParam TSchema - Type of the data being detected by the change stream
      * @typeParam TChange - Type of the whole change stream document emitted
@@ -4082,14 +4177,14 @@ export declare class MongoClient extends TypedEventEmitter<MongoClientEvents> {
 }
 
 /** @public */
-export declare type MongoClientEvents = Pick<TopologyEvents, typeof MONGO_CLIENT_EVENTS[number]> & {
+export declare type MongoClientEvents = Pick<TopologyEvents, (typeof MONGO_CLIENT_EVENTS)[number]> & {
     open(mongoClient: MongoClient): void;
 };
 
 /**
  * Describes all possible URI query options for the mongo client
  * @public
- * @see https://docs.mongodb.com/manual/reference/connection-string
+ * @see https://www.mongodb.com/docs/manual/reference/connection-string
  */
 export declare interface MongoClientOptions extends BSONSerializeOptions, SupportedNodeConnectionOptions {
     /** Specifies the name of the replica set, if the mongod is a member of a replica set. */
@@ -4195,7 +4290,7 @@ export declare interface MongoClientOptions extends BSONSerializeOptions, Suppor
      * A MongoDB WriteConcern, which describes the level of acknowledgement
      * requested from MongoDB for write operations.
      *
-     * @see https://docs.mongodb.com/manual/reference/write-concern/
+     * @see https://www.mongodb.com/docs/manual/reference/write-concern/
      */
     writeConcern?: WriteConcern | WriteConcernSettings;
     /** Validate mongod server certificate against Certificate Authority */
@@ -4212,9 +4307,12 @@ export declare interface MongoClientOptions extends BSONSerializeOptions, Suppor
     sslCRL?: string;
     /** TCP Connection no delay */
     noDelay?: boolean;
-    /** TCP Connection keep alive enabled */
+    /** @deprecated TCP Connection keep alive enabled. Will not be able to turn off in the future. */
     keepAlive?: boolean;
-    /** The number of milliseconds to wait before initiating keepAlive on the TCP socket */
+    /**
+     * @deprecated The number of milliseconds to wait before initiating keepAlive on the TCP socket.
+     *             Will not be configurable in the future.
+     */
     keepAliveInitialDelay?: number;
     /** Force server to assign `_id` values instead of driver */
     forceServerObjectId?: boolean;
@@ -4231,7 +4329,7 @@ export declare interface MongoClientOptions extends BSONSerializeOptions, Suppor
      *  Automatic encryption is an enterprise only feature that only applies to operations on a collection. Automatic encryption is not supported for operations on a database or view, and operations that are not bypassed will result in error
      *  (see [libmongocrypt: Auto Encryption Allow-List](https://github.com/mongodb/specifications/blob/master/source/client-side-encryption/client-side-encryption.rst#libmongocrypt-auto-encryption-allow-list)). To bypass automatic encryption for all operations, set bypassAutoEncryption=true in AutoEncryptionOpts.
      *
-     *  Automatic encryption requires the authenticated user to have the [listCollections privilege action](https://docs.mongodb.com/manual/reference/command/listCollections/#dbcmd.listCollections).
+     *  Automatic encryption requires the authenticated user to have the [listCollections privilege action](https://www.mongodb.com/docs/manual/reference/command/listCollections/#dbcmd.listCollections).
      *
      *  If a MongoClient with a limited connection pool size (i.e a non-zero maxPoolSize) is configured with AutoEncryptionOptions, a separate internal MongoClient is created if any of the following are true:
      *  - AutoEncryptionOptions.keyVaultClient is not passed.
@@ -4332,6 +4430,8 @@ export declare class MongoCursorInUseError extends MongoAPIError {
     get name(): string;
 }
 
+/* Excluded from this release type: MongoDBLogWritable */
+
 /** @public */
 export declare class MongoDBNamespace {
     db: string;
@@ -4417,7 +4517,7 @@ export declare const MongoErrorLabel: Readonly<{
 }>;
 
 /** @public */
-export declare type MongoErrorLabel = typeof MongoErrorLabel[keyof typeof MongoErrorLabel];
+export declare type MongoErrorLabel = (typeof MongoErrorLabel)[keyof typeof MongoErrorLabel];
 
 /**
  * An error generated when the user attempts to operate
@@ -4555,10 +4655,26 @@ export declare class MongoNotConnectedError extends MongoAPIError {
 }
 
 /**
- * Mongo Client Options
+ * Parsed Mongo Client Options.
+ *
+ * User supplied options are documented by `MongoClientOptions`.
+ *
+ * **NOTE:** The client's options parsing is subject to change to support new features.
+ * This type is provided to aid with inspection of options after parsing, it should not be relied upon programmatically.
+ *
+ * Options are sourced from:
+ * - connection string
+ * - options object passed to the MongoClient constructor
+ * - file system (ex. tls settings)
+ * - environment variables
+ * - DNS SRV records and TXT records
+ *
+ * Not all options may be present after client construction as some are obtained from asynchronous operations.
+ *
  * @public
  */
 export declare interface MongoOptions extends Required<Pick<MongoClientOptions, 'autoEncryption' | 'connectTimeoutMS' | 'directConnection' | 'driverInfo' | 'forceServerObjectId' | 'minHeartbeatFrequencyMS' | 'heartbeatFrequencyMS' | 'keepAlive' | 'keepAliveInitialDelay' | 'localThresholdMS' | 'maxConnecting' | 'maxIdleTimeMS' | 'maxPoolSize' | 'minPoolSize' | 'monitorCommands' | 'noDelay' | 'pkFactory' | 'raw' | 'replicaSet' | 'retryReads' | 'retryWrites' | 'serverSelectionTimeoutMS' | 'socketTimeoutMS' | 'srvMaxHosts' | 'srvServiceName' | 'tlsAllowInvalidCertificates' | 'tlsAllowInvalidHostnames' | 'tlsInsecure' | 'waitQueueTimeoutMS' | 'zlibCompressionLevel'>>, SupportedNodeConnectionOptions {
+    appName?: string;
     hosts: HostAddress[];
     srvHost?: string;
     credentials?: MongoCredentials;
@@ -4774,7 +4890,7 @@ export declare interface MonitorOptions extends Omit<ConnectionOptions, 'id' | '
 /**
  * @public
  * returns tuple of strings (keys to be joined on '.') that represent every path into a schema
- * https://docs.mongodb.com/manual/tutorial/query-embedded-documents/
+ * https://www.mongodb.com/docs/manual/tutorial/query-embedded-documents/
  *
  * @remarks
  * Through testing we determined that a depth of 8 is safe for the typescript compiler
@@ -4799,7 +4915,7 @@ export declare type NestedPaths<Type, Depth extends number[]> = Depth['length'] 
 /**
  * @public
  * returns keys (strings) for every path into a schema with a value of type
- * https://docs.mongodb.com/manual/tutorial/query-embedded-documents/
+ * https://www.mongodb.com/docs/manual/tutorial/query-embedded-documents/
  */
 export declare type NestedPathsOfType<TSchema, Type> = KeysOfAType<{
     [Property in Join<NestedPaths<TSchema, []>, '.'>]: PropertyType<TSchema, Property>;
@@ -4823,13 +4939,40 @@ export declare type NumericType = IntegerType | Decimal128 | Double;
 
 export { ObjectId }
 
-/* Excluded from this release type: OIDCMechanismServerStep1 */
+/**
+ * @public
+ * @experimental
+ */
+export declare interface OIDCMechanismServerStep1 {
+    authorizationEndpoint?: string;
+    tokenEndpoint?: string;
+    deviceAuthorizationEndpoint?: string;
+    clientId: string;
+    clientSecret?: string;
+    requestScopes?: string[];
+}
 
-/* Excluded from this release type: OIDCRefreshFunction */
+/**
+ * @public
+ * @experimental
+ */
+export declare type OIDCRefreshFunction = (principalName: string, serverResult: OIDCMechanismServerStep1, result: OIDCRequestTokenResult, timeout: AbortSignal | number) => Promise<OIDCRequestTokenResult>;
 
-/* Excluded from this release type: OIDCRequestFunction */
+/**
+ * @public
+ * @experimental
+ */
+export declare type OIDCRequestFunction = (principalName: string, serverResult: OIDCMechanismServerStep1, timeout: AbortSignal | number) => Promise<OIDCRequestTokenResult>;
 
-/* Excluded from this release type: OIDCRequestTokenResult */
+/**
+ * @public
+ * @experimental
+ */
+export declare interface OIDCRequestTokenResult {
+    accessToken: string;
+    expiresInSeconds?: number;
+    refreshToken?: string;
+}
 
 /** @public */
 export declare type OneOrMore<T> = T | ReadonlyArray<T>;
@@ -4855,7 +4998,7 @@ export declare interface OperationOptions extends BSONSerializeOptions {
 /**
  * Represents a specific point in time on a server. Can be retrieved by using `db.command()`
  * @public
- * @see https://docs.mongodb.com/manual/reference/method/db.runCommand/#response
+ * @see https://www.mongodb.com/docs/manual/reference/method/db.runCommand/#response
  */
 export declare type OperationTime = Timestamp;
 
@@ -4909,7 +5052,7 @@ export declare const ProfilingLevel: Readonly<{
 }>;
 
 /** @public */
-export declare type ProfilingLevel = typeof ProfilingLevel[keyof typeof ProfilingLevel];
+export declare type ProfilingLevel = (typeof ProfilingLevel)[keyof typeof ProfilingLevel];
 
 /** @public */
 export declare type ProfilingLevelOptions = CommandOperationOptions;
@@ -4953,7 +5096,7 @@ export declare type PushOperator<TSchema> = ({
  * of the data read from replica sets and replica set shards.
  * @public
  *
- * @see https://docs.mongodb.com/manual/reference/read-concern/index.html
+ * @see https://www.mongodb.com/docs/manual/reference/read-concern/index.html
  */
 export declare class ReadConcern {
     level: ReadConcernLevel | string;
@@ -4985,7 +5128,7 @@ export declare const ReadConcernLevel: Readonly<{
 }>;
 
 /** @public */
-export declare type ReadConcernLevel = typeof ReadConcernLevel[keyof typeof ReadConcernLevel];
+export declare type ReadConcernLevel = (typeof ReadConcernLevel)[keyof typeof ReadConcernLevel];
 
 /** @public */
 export declare type ReadConcernLike = ReadConcern | {
@@ -4997,7 +5140,7 @@ export declare type ReadConcernLike = ReadConcern | {
  * used to construct connections.
  * @public
  *
- * @see https://docs.mongodb.com/manual/core/read-preference/
+ * @see https://www.mongodb.com/docs/manual/core/read-preference/
  */
 export declare class ReadPreference {
     mode: ReadPreferenceMode;
@@ -5047,7 +5190,7 @@ export declare class ReadPreference {
     isValid(mode?: string): boolean;
     /**
      * Indicates that this readPreference needs the "SecondaryOk" bit when sent over the wire
-     * @see https://docs.mongodb.com/manual/reference/mongodb-wire-protocol/#op-query
+     * @see https://www.mongodb.com/docs/manual/reference/mongodb-wire-protocol/#op-query
      */
     secondaryOk(): boolean;
     /**
@@ -5090,7 +5233,7 @@ export declare const ReadPreferenceMode: Readonly<{
 }>;
 
 /** @public */
-export declare type ReadPreferenceMode = typeof ReadPreferenceMode[keyof typeof ReadPreferenceMode];
+export declare type ReadPreferenceMode = (typeof ReadPreferenceMode)[keyof typeof ReadPreferenceMode];
 
 /** @public */
 export declare interface ReadPreferenceOptions {
@@ -5173,9 +5316,12 @@ export declare const ReturnDocument: Readonly<{
 }>;
 
 /** @public */
-export declare type ReturnDocument = typeof ReturnDocument[keyof typeof ReturnDocument];
+export declare type ReturnDocument = (typeof ReturnDocument)[keyof typeof ReturnDocument];
 
-/** @public */
+/**
+ * @public
+ * @deprecated Use the createUser command directly instead.
+ */
 export declare interface RoleSpecification {
     /**
      * A role grants privileges to perform sets of actions on defined resources.
@@ -5240,7 +5386,7 @@ export declare const ServerApiVersion: Readonly<{
 }>;
 
 /** @public */
-export declare type ServerApiVersion = typeof ServerApiVersion[keyof typeof ServerApiVersion];
+export declare type ServerApiVersion = (typeof ServerApiVersion)[keyof typeof ServerApiVersion];
 
 /** @public */
 export declare class ServerCapabilities {
@@ -5457,7 +5603,7 @@ export declare const ServerType: Readonly<{
 }>;
 
 /** @public */
-export declare type ServerType = typeof ServerType[keyof typeof ServerType];
+export declare type ServerType = (typeof ServerType)[keyof typeof ServerType];
 
 /** @public */
 export declare type SetFields<TSchema> = ({
@@ -5578,13 +5724,13 @@ export declare type StrictUpdateFilter<TSchema> = {
 export declare type SupportedNodeConnectionOptions = SupportedTLSConnectionOptions & SupportedTLSSocketOptions & SupportedSocketOptions;
 
 /** @public */
-export declare type SupportedSocketOptions = Pick<TcpNetConnectOpts, typeof LEGAL_TCP_SOCKET_OPTIONS[number]>;
+export declare type SupportedSocketOptions = Pick<TcpNetConnectOpts, (typeof LEGAL_TCP_SOCKET_OPTIONS)[number]>;
 
 /** @public */
-export declare type SupportedTLSConnectionOptions = Pick<ConnectionOptions_2, Extract<keyof ConnectionOptions_2, typeof LEGAL_TLS_SOCKET_OPTIONS[number]>>;
+export declare type SupportedTLSConnectionOptions = Pick<ConnectionOptions_2, Extract<keyof ConnectionOptions_2, (typeof LEGAL_TLS_SOCKET_OPTIONS)[number]>>;
 
 /** @public */
-export declare type SupportedTLSSocketOptions = Pick<TLSSocketOptions, Extract<keyof TLSSocketOptions, typeof LEGAL_TLS_SOCKET_OPTIONS[number]>>;
+export declare type SupportedTLSSocketOptions = Pick<TLSSocketOptions, Extract<keyof TLSSocketOptions, (typeof LEGAL_TLS_SOCKET_OPTIONS)[number]>>;
 
 /** @public */
 export declare type TagSet = {
@@ -5595,7 +5741,7 @@ export declare type TagSet = {
 
 /** @public
  * Configuration options for timeseries collections
- * @see https://docs.mongodb.com/manual/core/timeseries-collections/
+ * @see https://www.mongodb.com/docs/manual/core/timeseries-collections/
  */
 export declare interface TimeSeriesCollectionOptions extends Document {
     timeField: string;
@@ -5718,7 +5864,7 @@ export declare const TopologyType: Readonly<{
 }>;
 
 /** @public */
-export declare type TopologyType = typeof TopologyType[keyof typeof TopologyType];
+export declare type TopologyType = (typeof TopologyType)[keyof typeof TopologyType];
 
 /** @public */
 export declare interface TopologyVersion {
@@ -5936,8 +6082,11 @@ export declare interface UpdateOptions extends CommandOperationOptions {
     let?: Document;
 }
 
-/** @public */
-export declare interface UpdateResult {
+/**
+ * @public
+ * `TSchema` is the schema of the collection
+ */
+export declare interface UpdateResult<TSchema extends Document = Document> {
     /** Indicates whether this write result was acknowledged. If not, then all other members of this result will be undefined */
     acknowledged: boolean;
     /** The number of documents that matched the filter */
@@ -5947,7 +6096,7 @@ export declare interface UpdateResult {
     /** The number of documents that were upserted */
     upsertedCount: number;
     /** The identifier of the inserted document if an upsert took place */
-    upsertedId: ObjectId;
+    upsertedId: InferIdType<TSchema> | null;
 }
 
 /** @public */
@@ -6137,7 +6286,7 @@ export declare type WithTransactionCallback<T = void> = (session: ClientSession)
  * requested from MongoDB for write operations.
  * @public
  *
- * @see https://docs.mongodb.com/manual/reference/write-concern/
+ * @see https://www.mongodb.com/docs/manual/reference/write-concern/
  */
 export declare class WriteConcern {
     /** request acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags. */

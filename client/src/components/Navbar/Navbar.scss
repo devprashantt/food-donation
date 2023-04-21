@@ -29,6 +29,13 @@ li {
   grid-column: 2/3;
   justify-content: start;
   align-items: center;
+
+
+
+  span{
+    color: red;
+    font-weight: 500;
+  }
 }
 
 .nav-items {
@@ -44,10 +51,9 @@ li {
 
 .logo h2 {
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 450;
   margin-right: 3rem;
-  text-transform: uppercase;
-  color: brown;
+  color: rgb(0, 0, 0);
 }
 
 .logo h2 span {
@@ -64,29 +70,31 @@ li {
   transition: 0.5s;
 }
 
-.header-login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .header-login .hamburger-menu {
   display: none;
 }
 
-.nav-btn {
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  font-size: 1.5rem;
-  border: 1.5px solid transparent;
-  background: rgb(250, 1, 1);
-  color: white;
-  margin-left: 3rem;
-}
 
-.nav-btn:hover {
-  background-color: coral;
-  cursor: pointer;
+.header-login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  Link{
+    .btn{
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-size: 1.5rem;
+      border: 1.5px solid transparent;
+      background: rgb(250, 1, 1);
+      color: white;
+    }
+    
+    .btn{
+      background-color: coral;
+      cursor: pointer;
+    }
+  }
 }
 
 @media (max-width: 1080px) {

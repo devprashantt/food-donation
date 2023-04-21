@@ -1,10 +1,10 @@
 import React from 'react';
 import "./Card.css";
 
-const Card = ({name,des}) => {
+const Card = ({name,des,img}) => {
   return (
     <div className='card'>
-        <img src="https://picsum.photos/400/300"  alt="Ngo pic" />
+        <img src={img} alt="Ngo pic" />
         <div class="card-content">
     <h2 className='card-heading'>{name}</h2>
     <p className='card-description'>{des}</p>
