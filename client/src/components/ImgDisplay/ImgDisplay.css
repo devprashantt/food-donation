@@ -1,10 +1,12 @@
 .first-display{
+    margin: 20px;
     background-image: url("../../assets/ImgDisplay.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 700px;
     justify-content: center;
+    border-radius: 10px;
 }
 .img-text{
     position: relative;
