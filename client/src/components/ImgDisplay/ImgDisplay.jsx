@@ -9,7 +9,7 @@ const ImgDisplay = () => {
         <h1 className="img-text">
           Feeding The <span>Hungry</span>
         </h1>
-        <h3>We Serve Food To The Needy People</h3>
+        <h3>We Serve Food To The Needy Peoples</h3>
         <Link to="/signup">
           <button className="btn">Donate Now</button>
         </Link>
