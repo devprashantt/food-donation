@@ -68,16 +68,16 @@ const Navbar = ({ token }) => {
         {
           // if token is present then show logout button else show login and signup button
           token ? (
-            <Link to="/dashboard">
-              <button className="btn">Dashboard</button>
+            <Link className="link" to="/dashboard">
+              <button className="btn-nav">Dashboard</button>
             </Link>
           ) : (
             <div className="l-btn">
-              <Link to="/login">
-                <button className="btn">Login</button>
+              <Link  className="link" to="/login">
+                <button className="btn-nav">Login</button>
               </Link>
-              <Link to="/signup">
-                <button className="btn">Signup</button>
+              <Link className="link" to="/signup">
+                <button className="btn-nav">Signup</button>
               </Link>
             </div>
           )

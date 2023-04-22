@@ -1,7 +1,15 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .food{
-    padding: 2rem 3.5rem;
+    height: 100vh;
+    margin-top: 1rem;
+    padding: 0 3rem;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
