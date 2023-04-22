@@ -67,7 +67,7 @@ function FoodDonation() {
             />
           </div>
           <div  className="form_element">
-            <label htmlFor="address">Address</label>
+            <label htmlFor="address">Address:</label>
             <input
               type="address"
               id="address"
