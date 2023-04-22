@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
     {
@@ -19,11 +19,17 @@ const userSchema = new mongoose.Schema(
         number: {
             type: String,
             required: true,
-        }
+        },
+        food: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Food",
+            },
+        ],
     },
     { timestamps: true }
 );
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

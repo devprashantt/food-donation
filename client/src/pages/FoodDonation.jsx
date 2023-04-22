@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./foodDonation.css"
+import "./foodDonation.css";
 
 function FoodDonation() {
   const [foodName, setFoodName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [address, setAddress] = useState("");
+
+  const email = localStorage.getItem("email");
+  console.log(email);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -15,12 +18,12 @@ function FoodDonation() {
       quantity,
       expiryDate,
       address,
+      email,
     };
     // Send the form data to the server using fetch or Axios
     try {
       const response = await axios.post("http://localhost:3000/fooddonation", {
-        ...formData,
-        donor: "5f9f1b0b0b9b0b0b0b0b0b0b",
+        formData,
       });
 
       console.log(response.data);
@@ -32,8 +35,9 @@ function FoodDonation() {
 
   return (
     <div className="foodDonation_container">
-      
-      <div className="foodDonation_heading"><h2 >FOOD DONATION FORM</h2></div>
+      <div className="foodDonation_heading">
+        <h2>FOOD DONATION FORM</h2>
+      </div>
       <div className="foodDonation_wrapper">
         <form onSubmit={handleSubmit}>
           <div className="form_element">
@@ -46,7 +50,7 @@ function FoodDonation() {
               onChange={(event) => setFoodName(event.target.value)}
             />
           </div>
-          <div  className="form_element">
+          <div className="form_element">
             <label htmlFor="quantity">Quantity</label>
             <input
               type="number"
@@ -56,7 +60,7 @@ function FoodDonation() {
               onChange={(event) => setQuantity(event.target.value)}
             />
           </div>
-          <div  className="form_element">
+          <div className="form_element">
             <label htmlFor="expiryDate">Expiry Date</label>
             <input
               type="date"
@@ -66,7 +70,7 @@ function FoodDonation() {
               onChange={(event) => setExpiryDate(event.target.value)}
             />
           </div>
-          <div  className="form_element">
+          <div className="form_element">
             <label htmlFor="address">Address</label>
             <input
               type="address"
@@ -76,11 +80,11 @@ function FoodDonation() {
               onChange={(event) => setAddress(event.target.value)}
             />
           </div>
-          <button id="foodDonation_submit-btn" type="submit">Submit</button>
+          <button id="foodDonation_submit-btn" type="submit">
+            Submit
+          </button>
         </form>
       </div>
-      
-      
     </div>
   );
 }

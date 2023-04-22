@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const foodSchema = new mongoose.Schema({
-    name: {
+    foodName: {
         type: String,
         required: true,
     },
@@ -13,17 +13,15 @@ const foodSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    donor: {
-        type: ObjectId,
-        ref: 'User',
-        required: true,
-    }, 
     address: {
         type: String,
         required: true,
-    }
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    },
 });
 
-const Food = model('Food', foodSchema);
+const Food = mongoose.model("Food", foodSchema);
 
 export default Food;
