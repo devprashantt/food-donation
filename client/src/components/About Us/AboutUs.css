@@ -2,7 +2,7 @@
     display: flex;
     height: 60vh;
     padding: 30px 60px;
-    margin: 30px;
+    margin: 40px 30px;
     align-items: center;
     justify-content: space-between;
 }
@@ -17,6 +17,7 @@
 
 
 .info-heading {
+    padding-top: 15px;
     color: black;
     font-size: 3rem;
     margin-bottom: 20px;
@@ -24,7 +25,7 @@
 
 .info-subheading {
     font-size: 1.5rem;
-    font-weight: 350;
+    font-weight: 100;
 }
 
 .info-img {

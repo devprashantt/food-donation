@@ -11,6 +11,10 @@
     font-weight: 800;
 }
 
+.heading-footer span{
+    color: red;
+}
+
 .footer-h4{
     font-weight: 500;
     font-size: 1.5rem;
@@ -21,9 +25,16 @@
 .footer-p{
     font-size: 1.2rem;
     padding: 0.5rem;
-    color: #918f8f;
+    color: #858484;
 }
 
-.icons{
+.footer-p:hover{
+    color:black;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.footer-icons{
     display: flex;
+    flex-direction: row;
 }

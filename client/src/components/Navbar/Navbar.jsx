@@ -14,7 +14,7 @@ const Navbar = ({ token }) => {
       <div className="logo">
         <h2>
           ShareThe
-          <span>Meal</span>
+          <span>MEAL</span>
         </h2>
       </div>
       <div className={showMenu ? "nav-items mobile-menu-link" : "nav-items"}>

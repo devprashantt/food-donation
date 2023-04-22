@@ -1,4 +1,4 @@
-.card{
+.partner-card{
     max-width: 350px;
     height: 60vh;
     margin: 10px 60px;
@@ -8,7 +8,7 @@
     border-radius: 20px;
 }
 
-.card img {
+.partner-card img {
     width: 100%;
     height: 200px;
     border-radius: 10px;
