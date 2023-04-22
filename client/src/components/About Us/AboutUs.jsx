@@ -5,7 +5,7 @@ const AboutUs = () => {
   return (
     <div className="aboutus">
       <div className="info-text">
-        <h1 className="info-heading">Food Donation</h1>
+        <h1 className="info-heading">Share The Meal</h1>
         <p className="info-subheading">
           In January 2019, Zomato and Feeding India (registered as Hunger
           Heroes) collaborated to eradicate hunger and malnutrition in India.
