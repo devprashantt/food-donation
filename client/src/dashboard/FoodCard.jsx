@@ -3,13 +3,13 @@ import { FaCalendarAlt, FaCartArrowDown, FaHome } from "react-icons/fa";
 import "./FoodCard.css";
 
 const FoodCard = ({ name, quantity, date, address }) => {
-  const food = "pulses";
+ 
   return (
     <div>
       <div class="card">
         <img
           className="foodcard-img"
-          src="https://source.unsplash.com/random/?{food}"
+          src="https://source.unsplash.com/random/?food"
           alt="Card Image"
         />
         <div class="card-content">

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap');
+
 .vision {
     display: flex;
     height: 60vh;
@@ -5,6 +7,7 @@
     margin: 40px 30px;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Poppins','sans-serif';
 }
 
 .vision-text {
@@ -19,12 +22,12 @@
 .vision-heading {
     color: black;
     font-size: 1rem;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .vision-subheading {
     font-size: 1.5rem;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .vision-img {
