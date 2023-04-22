@@ -26,8 +26,11 @@ const Login = () => {
       });
       console.log(res);
       const { token } = res.data.token;
-
+      console.log(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data.existingUser));
+      console.log(JSON.stringify(res.data.existingUser));
       localStorage.setItem("token", token);
+      localStorage.setItem("email", email);
 
       navigate("/"); // redirect to home page
     } catch (err) {

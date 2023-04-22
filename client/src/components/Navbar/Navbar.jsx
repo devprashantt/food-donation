@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ token }) => {
+  const { id } = useParams();
   const [showMenu, setShowMenu] = useState(false);
   const handleClick = () => {
     setShowMenu(!showMenu);

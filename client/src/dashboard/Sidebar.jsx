@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { FaHome,FaUser,FaListAlt } from "react-icons/fa";
-
+import { FaHome, FaUser, FaListAlt } from "react-icons/fa";
 
 const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
   const navigate = useNavigate();
 
+  const email = localStorage.getItem("email");
+
   const sideItems = [
     {
       text: "Home",
-      logo:<FaHome />,
+      logo: <FaHome />,
       path: "/dashboard",
     },
     {
       text: "Food",
-      logo:<FaListAlt />,
+      logo: <FaListAlt />,
       path: "/dashboard/food",
     },
     {
       text: "Profile",
-      logo:<FaUser />,
+      logo: <FaUser />,
       path: "/dashboard/profile",
     },
   ];
@@ -46,7 +47,7 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
         left: 0,
         bottom: 0,
         zIndex: 999,
-        margin:"10px",
+        margin: "10px",
       }}
     >
       <div
@@ -57,15 +58,17 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
           justifyContent: "space-between",
           alignItems: "center",
           margin: "0",
-          fontSize:"2rem",
+          fontSize: "2rem",
           gap: "0rem",
         }}
       >
         <div className="sidebar__header__logo">
           <Link to="/">
             <h1>
-              <span style={{ color: "#000000" ,fontSize:"2rem" }}>ShareThe</span>{" "}
-              <span style={{ color: "red",fontSize:"2.5rem" }}>Meal</span>
+              <span style={{ color: "#000000", fontSize: "2rem" }}>
+                ShareThe
+              </span>{" "}
+              <span style={{ color: "red", fontSize: "2.5rem" }}>Meal</span>
             </h1>
           </Link>
         </div>
@@ -88,8 +91,7 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
               gap: "1rem",
               cursor: "pointer",
               color: active === item.path.substring(1) ? "#fff" : "",
-              backgroundColor:
-                active === item.path.substring(1) ? "red" : "",
+              backgroundColor: active === item.path.substring(1) ? "red" : "",
               padding: "1rem 1.5rem",
               borderRadius: "0.5rem",
             }}
@@ -107,18 +109,35 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
             </div>
           </div>
         ))}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          gap: "1rem",
-          marginTop: "auto",
-        }}
-      >
-        Give feedback
+        {email === "officialprashanttt@gmail.com" && (
+          <div
+            className="sidebar__body__item"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1rem",
+              cursor: "pointer",
+              color: active === "admin" ? "#fff" : "",
+              backgroundColor: active === "admin" ? "red" : "",
+              padding: "1rem 1.5rem",
+              borderRadius: "0.5rem",
+            }}
+            onClick={() => navigate("/dashboard/admin")}
+          >
+            <div className="sidebar__body__item__icon">
+              <i className="fas fa-home">
+                <FaUser />
+              </i>
+            </div>
+            <div
+              className={`sidebar__body__item__text ${
+                active === "admin" ? "active" : ""
+              }`}
+            >
+              Admin
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
