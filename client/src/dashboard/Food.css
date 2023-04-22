@@ -5,11 +5,11 @@
 }
 
 .food{
-    height: 100vh;
+    height: auto;
     margin-top: 1rem;
-    padding: 0 3rem;
+    padding: 0 rem;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }

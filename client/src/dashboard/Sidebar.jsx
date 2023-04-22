@@ -54,21 +54,18 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
         className="sidebar__header"
         style={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
           alignItems: "center",
-          margin: "0",
+          flexDirection: "column",
+          alignItems: "center",
           fontSize: "2rem",
-          gap: "0rem",
         }}
       >
         <div className="sidebar__header__logo">
           <Link to="/">
             <h1>
-              <span style={{ color: "#000000", fontSize: "2rem" }}>
-                ShareThe
-              </span>{" "}
-              <span style={{ color: "red", fontSize: "2.5rem" }}>Meal</span>
+              <span style={{ color: "#000000", fontSize: "1.5rem" }}>
+                ShareThe<span style={{ color: "red", fontSize: "2rem" }} >MEAL</span>
+              </span>
             </h1>
           </Link>
         </div>

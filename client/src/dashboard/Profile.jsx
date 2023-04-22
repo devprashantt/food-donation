@@ -18,8 +18,8 @@ const Profile = () => {
             <div className="info">
               <p className="name">{user.name}</p>
               <p className="place">
-                <span></span>
-                India
+                <button className="logout">Logout</button>
+                
               </p>
             </div>
           </div>
@@ -45,7 +45,6 @@ const Profile = () => {
               <span className="tag">Edit Profile</span>
               <span className="tag">Change Username</span>
               <span className="tag">Change Password</span>
-              <span className="tag">Add Funds</span>
             </div>
           </div>
         </div>
