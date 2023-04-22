@@ -30,7 +30,6 @@ const Layout = ({ children }) => {
           flexDirection: "column",
           justifyContent: "space-between",
           backgroundColor: "#f8f8fa",
-          border: "1px solid blue"
         }}
       >
         <div

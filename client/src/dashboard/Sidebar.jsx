@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
+import { FaHome,FaUser,FaListAlt } from "react-icons/fa";
+
 
 const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
   const { pathname } = useLocation();
@@ -10,14 +11,17 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
   const sideItems = [
     {
       text: "Home",
+      logo:<FaHome />,
       path: "/dashboard",
     },
     {
       text: "Food",
+      logo:<FaListAlt />,
       path: "/dashboard/food",
     },
     {
       text: "Profile",
+      logo:<FaUser />,
       path: "/dashboard/profile",
     },
   ];
@@ -53,15 +57,15 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
           justifyContent: "space-between",
           alignItems: "center",
           margin: "0",
+          fontSize:"2rem",
           gap: "0rem",
-          border: "1px solid black"
         }}
       >
         <div className="sidebar__header__logo">
           <Link to="/">
             <h1>
-              <span style={{ color: "#000000" }}>ShareThe</span>{" "}
-              <span style={{ color: "red" }}>Meal</span>
+              <span style={{ color: "#000000" ,fontSize:"2rem" }}>ShareThe</span>{" "}
+              <span style={{ color: "red",fontSize:"2.5rem" }}>Meal</span>
             </h1>
           </Link>
         </div>
@@ -92,7 +96,7 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
             onClick={() => navigate(item.path)}
           >
             <div className="sidebar__body__item__icon">
-              <i className="fas fa-home"><FaHome /></i>
+              <i className="fas fa-home">{item.logo}</i>
             </div>
             <div
               className={`sidebar__body__item__text ${
