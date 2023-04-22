@@ -29,8 +29,8 @@ const Layout = ({ children }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#f8f8fa",
-          border: "1px solid blue"
+          // backgroundColor: "#f8f8fa",
+          // border: "1px solid blue"
         }}
       >
         <div
