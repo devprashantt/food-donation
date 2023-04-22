@@ -1,0 +1,7 @@
+.food{
+    padding: 2rem 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

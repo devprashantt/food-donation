@@ -1,0 +1,135 @@
+.wrapper{
+    width: 100%;
+    height: auto;
+   display: flex;
+   align-items: center;
+    justify-content: space-evenly;
+
+   margin: 50px 0px;
+ }
+ .wrapper .profile{
+    width: 600px;
+    height: 60vh;
+ }
+ .wrapper .profile .profile_img_info{
+    display: flex;
+    background: #eae9e9;
+    border-radius: 10px;
+    margin-bottom: 35px;
+ }
+ .wrapper .profile .profile_img_info .img{
+    background-image: url("../assets/user.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+   width: 250px;
+   margin-right: 25px;
+ }
+ 
+ .wrapper .profile .profile_img_info .img img{
+   max-width: 250px;
+   display: block;
+   border-top-left-radius: 10px;
+   border-bottom-left-radius: 10px;
+ }
+
+ 
+ .wrapper .profile .profile_img_info .info .name{
+   font-size: 2.5rem;
+   font-weight: 700;
+   margin-bottom: 5px;
+   margin-top: 47px;
+ }
+ 
+ .wrapper .profile .profile_img_info .place{
+     font-weight: 200;
+ }
+ .wrapper .profile .profile_skills{
+   background: #eae9e9;
+   border-radius: 10px;
+   padding: 25px;
+ }
+ 
+ .wrapper .profile .profile_skills .skills{
+   padding-bottom: 20px;
+   border-bottom: 1px solid #cccccc;
+ }
+ 
+ .wrapper .profile .profile_skills .skills p{
+   text-transform: uppercase;
+   font-weight: 700;
+   font-size: 1rem;
+   margin-bottom: 10px;
+ }
+ 
+ .wrapper .profile .profile_skills .skills ul li{
+   font-size: 1.8rem;
+   padding-bottom: 4px;
+
+ }
+ .wrapper .profile .profile_skills .skills ul li .icon{
+    font-size: 1.8rem;
+    margin-right: 1rem;
+ }
+
+ 
+ .wrapper .profile .profile_skills .skills ul li .fab{
+   width: 40px;
+ }
+ .wrapper .profile .profile_skills .tags_wrap{
+   padding-top: 20px;
+ }
+ 
+ .wrapper .profile .profile_skills .tags_wrap span.tag{
+   background: #f5f5f5;
+   padding: 10px 15px;
+   display: inline-block;
+   border-radius: 10px;
+   margin: 5px;
+   font-size: 14px;
+ }
+
+ .title{
+    font-size: 1.5rem;
+    padding-bottom: 4px;
+ }
+ 
+ .wrapper .profile_counts{
+   background: #eae9e9;
+   border-radius: 10px;
+   padding: 25px;
+   width: 205px;
+   position: relative;
+   right: 30px;
+ }
+ 
+ .wrapper .profile_counts .profile_counts_wrap{
+   padding: 30px 0;
+   border-bottom: 1px solid #cccccc;
+ }
+ .wrapper .profile_counts .profile_counts_wrap:first-child{
+   padding-top: 0;
+ }
+ .wrapper .profile_counts .profile_counts_wrap:last-child{
+   padding-bottom: 0px;
+   border-bottom: 0px;
+ }
+ 
+ .wrapper .profile_counts .profile_counts_wrap .item{
+     padding: 20px 10px;
+     text-align: center;
+     border-radius: 10px;
+     cursor: pointer;
+     transition: all .2s ease;
+ }
+ .wrapper .profile_counts .profile_counts_wrap .item:hover{
+   background: #ffffff;
+ }
+ 
+ .wrapper .profile_counts .profile_counts_wrap .item .fas{
+   font-size: 30px;
+   margin-bottom: 20px;
+ }
+ .wrapper .profile_counts .profile_counts_wrap .item .title{
+   font-size: 14px;
+ }

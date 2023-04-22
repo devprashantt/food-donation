@@ -35,7 +35,7 @@ form {
 }
 
 .main-img {
-  background-image: url(../assets/images/login.jpg);
+  background-image: url(../assets/images/signup.jpg);
   background-size: cover;
   width: 50%;
   flex: 1;

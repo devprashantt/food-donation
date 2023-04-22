@@ -24,12 +24,13 @@ const Layout = ({ children }) => {
           position: "relative",
           height: "100%",
           width: "100%",
-          marginLeft: "18%",
+          marginLeft: "21%",
           marginTop: "5rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
           backgroundColor: "#f8f8fa",
+          border: "1px solid blue"
         }}
       >
         <div
@@ -43,7 +44,7 @@ const Layout = ({ children }) => {
             position: "fixed",
             top: 0,
             right: 0,
-            left: "18%",
+            left: "21%",
             zIndex: 100,
           }}
         >

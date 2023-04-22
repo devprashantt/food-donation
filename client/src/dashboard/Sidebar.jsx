@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
   const { pathname } = useLocation();
@@ -30,7 +31,7 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
       className="sidebar"
       style={{
         height: "100%",
-        width: "18%",
+        width: "20%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
@@ -41,6 +42,7 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
         left: 0,
         bottom: 0,
         zIndex: 999,
+        margin:"10px",
       }}
     >
       <div
@@ -50,15 +52,16 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
-          margin: "1rem 0",
-          gap: "0.5rem",
+          margin: "0",
+          gap: "0rem",
+          border: "1px solid black"
         }}
       >
         <div className="sidebar__header__logo">
           <Link to="/">
             <h1>
-              <span style={{ color: "#000000" }}>Food</span>{" "}
-              <span style={{ color: "#7848f4" }}>Donation</span>
+              <span style={{ color: "#000000" }}>ShareThe</span>{" "}
+              <span style={{ color: "red" }}>Meal</span>
             </h1>
           </Link>
         </div>
@@ -80,16 +83,16 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
               alignItems: "center",
               gap: "1rem",
               cursor: "pointer",
-              color: active === item.path.substring(1) ? "#ffffff" : "",
+              color: active === item.path.substring(1) ? "#fff" : "",
               backgroundColor:
-                active === item.path.substring(1) ? "#7848f4" : "",
+                active === item.path.substring(1) ? "red" : "",
               padding: "1rem 1.5rem",
               borderRadius: "0.5rem",
             }}
             onClick={() => navigate(item.path)}
           >
             <div className="sidebar__body__item__icon">
-              <i className="fas fa-home">Icon</i>
+              <i className="fas fa-home"><FaHome /></i>
             </div>
             <div
               className={`sidebar__body__item__text ${
