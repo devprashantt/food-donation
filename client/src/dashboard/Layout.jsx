@@ -29,7 +29,12 @@ const Layout = ({ children }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+<<<<<<< HEAD
           backgroundColor: "#f8f8fa",
+=======
+          // backgroundColor: "#f8f8fa",
+          // border: "1px solid blue"
+>>>>>>> ac971f32097fad64ac88e088fa1ac6293fc9d857
         }}
       >
         <div

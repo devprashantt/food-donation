@@ -11,13 +11,13 @@ body {
   font-size: 1.5rem;
 }
 
-.container {
+.login_container {
 
   display: flex;
   justify-content: space-around;
 }
 
-.wrapper {
+.login_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,11 +34,12 @@ form {
 
 }
 
-.main-img {
-  background-image: url(../assets/images/signup.jpg);
+.login_main-img {
+  background-image: url(../assets/images/login.jpg);
   background-size: cover;
   width: 50%;
-  flex: 1;
+  flex:1;
+  
 }
 
 .login__heading {

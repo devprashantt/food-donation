@@ -36,8 +36,8 @@ const Login = () => {
   };
 
   return (
-    <div class="container">
-      <div class="wrapper">
+    <div class="login_container">
+      <div class="login_wrapper">
         <form>
           <h1 className="login__heading">Login</h1>
           <p>If you are already a member, easily log in</p>
@@ -47,14 +47,14 @@ const Login = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Enter your email..."
+            placeholder="Enter your email"
             id="email"
           />
           <input
             name="password"
             value={formData.password}
             onChange={handleChange}
-            placeholder="Enter password..."
+            placeholder="Enter password"
             id="password"
           />
           <a href="#">Forgot my password</a>
@@ -96,7 +96,7 @@ const Login = () => {
         </form>
       </div>
 
-      <div class="main-img"></div>
+      <div class="login_main-img"></div>
     </div>
   );
 };

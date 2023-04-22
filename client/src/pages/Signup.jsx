@@ -52,7 +52,7 @@ const Signup = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Enter your name.."
+            placeholder="Enter your name"
             id="name"
           />
           <input
@@ -60,7 +60,7 @@ const Signup = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Enter your email..."
+            placeholder="Enter your email"
             id="email"
           />
           <input
@@ -68,7 +68,7 @@ const Signup = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            placeholder="Enter your password..."
+            placeholder="Enter your password"
             id="password"
           />
           <input
@@ -76,7 +76,7 @@ const Signup = () => {
             name="number"
             value={formData.number}
             onChange={handleChange}
-            placeholder="Enter your phone number..."
+            placeholder="Enter your phone number"
             id="phone"
           />
 
