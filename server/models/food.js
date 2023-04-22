@@ -17,7 +17,11 @@ const foodSchema = new mongoose.Schema({
         type: ObjectId,
         ref: 'User',
         required: true,
-    },
+    }, 
+    address: {
+        type: String,
+        required: true,
+    }
 });
 
 const Food = model('Food', foodSchema);

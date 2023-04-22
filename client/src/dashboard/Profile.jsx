@@ -16,7 +16,7 @@ const Profile = () => {
              <div class="info">
                   <p class="name">Aditya Gaikwad</p>
                <p class="place"><span></span>
-                    Australia
+                    India
                   </p>
              </div>
         </div>
