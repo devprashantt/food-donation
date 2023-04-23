@@ -15,18 +15,20 @@
     
 
     height: 100vh;
+    display: flex;
+
 
     
 }
-.foodDonation_heading{
+.foodDonation_heading {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: larger;
+    font-size: 2rem;
     color: white;
     margin: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 
 }
-form{
+.food-donation_form{
     display: flex;
    
     flex-direction: column;
@@ -37,14 +39,14 @@ form{
 .form_element{
     display: flex;
     width:auto;
-    height: 9rem;
+    height: 6rem;
     flex-direction: column;
     
     
 }
 .form_element label{
     display: block;
-    margin-bottom: 0px;
+    margin-bottom: 2px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.5rem;
     font-weight: 700;

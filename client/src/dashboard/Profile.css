@@ -1,11 +1,11 @@
 .wrapper{
     width: 100%;
-    height: 85vh;
+    height: 100vh;
    display: flex;
    align-items: center;
     justify-content: space-evenly;
-
-   margin: 50px 0px;
+    background: linear-gradient(#3D405B, #575c85);
+   margin: 0px 0px;
  }
  .wrapper .profile{
     width: 600px;

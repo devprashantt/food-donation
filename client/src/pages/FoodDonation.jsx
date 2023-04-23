@@ -36,10 +36,10 @@ function FoodDonation() {
   return (
     <div className="foodDonation_container">
       <div className="foodDonation_heading">
-        <h2>FOOD DONATION FORM</h2>
+        <h1 className="heading-foodd">FOOD DONATION FORM</h1>
       </div>
       <div className="foodDonation_wrapper">
-        <form onSubmit={handleSubmit}>
+        <form  className="food-donation_form" onSubmit={handleSubmit}>
           <div className="form_element">
             <label htmlFor="foodName">Food Type</label>
             <input

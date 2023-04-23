@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { FaHome, FaUser, FaListAlt } from "react-icons/fa";
+import { FaHome, FaUser, FaListAlt, FaHandsHelping } from "react-icons/fa";
 
 const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
   const { pathname } = useLocation();
@@ -25,6 +25,11 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
       logo: <FaUser />,
       path: "/dashboard/profile",
     },
+    {
+      text: "Volunteer",
+      logo: <FaHandsHelping />,
+      path: "/dashboard/volunteer",
+    }
   ];
 
   useEffect(() => {
@@ -54,7 +59,6 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
         className="sidebar__header"
         style={{
           display: "flex",
-          alignItems: "center",
           flexDirection: "column",
           alignItems: "center",
           fontSize: "2rem",
