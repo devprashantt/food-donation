@@ -25,11 +25,6 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
       logo: <FaUser />,
       path: "/dashboard/profile",
     },
-    {
-      text: "Volunteer",
-      logo: <FaHandsHelping />,
-      path: "/dashboard/volunteer",
-    }
   ];
 
   useEffect(() => {
