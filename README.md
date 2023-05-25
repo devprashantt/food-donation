@@ -1,5 +1,7 @@
 # Food Donation
 
+[![Food Donation](https://img.youtube.com/vi/uiFmoIfHRp8/0.jpg)](https://www.youtube.com/watch?v=uiFmoIfHRp8)
+
 Food Donation is a web application aimed at connecting individuals and organizations willing to donate excess food with those in need. It provides a platform to reduce food waste and contribute to the well-being of communities.
 
 ## Features
