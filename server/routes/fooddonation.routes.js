@@ -5,11 +5,10 @@ import User from "../models/user.js";
 
 const router = Router();
 
-
 // Route to handle food donation form submission
 router.post("/fooddonation", async (req, res) => {
     try {
-        const { foodName, quantity, expiryDate, address, email } = req.body.formData;
+        const { foodName, foodTag, quantity, expiryDate, address, email } = req.body.formData;
 
         const user = await User.findOne({ email });
 
@@ -20,6 +19,7 @@ router.post("/fooddonation", async (req, res) => {
             quantity,
             expiryDate,
             address,
+            foodTag,
             user: user._id,
         });
 

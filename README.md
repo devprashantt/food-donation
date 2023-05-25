@@ -21,16 +21,53 @@ Food Donation is a web application aimed at connecting individuals and organizat
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/food-donation.git`
-2. Navigate to the project frontend directory: `cd food-donation/client`
-2. Navigate to the project backend directory: `cd food-donation/server`
-3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
+1. Clone the repository: `git clone https://github.com/devprashantt/food-donation.git`
+
+2. Frontend Installation:
+- Navigate to the project frontend directory:
+  ```
+  cd food-donation/client
+  ```
+- Install dependencies:
+  ```
+  npm install
+  ```
+- Start the development server:
+  ```
+  npm start
+  ```
+
+3. Backend Installation:
+- Navigate to the project backend directory:
+  ```
+  cd food-donation/server
+  ```
+- Install dependencies:
+  ```
+  npm install
+  ```
+- Start the development server:
+  ```
+  npm start
+  ```
+
+Make sure you have Node.js and npm (Node Package Manager) installed on your machine before running these commands.
+
+## Usage
+
+1. Frontend:
+- The frontend application can be accessed at `http://localhost:3000` in your web browser.
+- Follow the provided UI to navigate through the food donation process.
+
+2. Backend:
+- The backend server will be running at `http://localhost:3000`.
+- The frontend application will communicate with the backend server for data exchange.
 
 ## Contributing
 
-Contributions to Food Donation are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. Please adhere to the code formatting and style guidelines.
+Contributions are welcome! If you find any issues or have suggestions, please open an issue or submit a pull request.
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+

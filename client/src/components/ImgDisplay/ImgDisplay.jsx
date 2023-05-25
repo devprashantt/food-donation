@@ -1,8 +1,21 @@
 import React from "react";
 import "./ImgDisplay.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ImgDisplay = () => {
+  const user = localStorage.getItem("user");
+  const navigate = useNavigate();
+
+  const handleDonateNowClick = () => {
+    if (user) {
+      // User is logged in, navigate to food donation route
+      navigate("/dashboard");
+    } else {
+      // User is not logged in, navigate to signup route
+      navigate("/signup");
+    }
+  };
+
   return (
     <div className="first-display">
       <div className="text">
@@ -10,9 +23,9 @@ const ImgDisplay = () => {
           Feeding The <span>Hungry</span>
         </h1>
         <h3>We Serve Food To The Needy Peoples</h3>
-        <Link to="/signup">
-          <button className="btn">Donate Now</button>
-        </Link>
+        <button className="btn" onClick={handleDonateNowClick}>
+          Donate Now
+        </button>
       </div>
     </div>
   );

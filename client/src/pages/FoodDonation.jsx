@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./foodDonation.css";
+import "./FoodDonation.css";
 
 function FoodDonation() {
   const [foodName, setFoodName] = useState("");
+  const [foodTag, setFoodTag] = useState("");
   const [quantity, setQuantity] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [address, setAddress] = useState("");
@@ -15,11 +16,13 @@ function FoodDonation() {
     event.preventDefault();
     const formData = {
       foodName,
+      foodTag,
       quantity,
       expiryDate,
       address,
       email,
     };
+    console.log(formData);
     // Send the form data to the server using fetch or Axios
     try {
       const response = await axios.post("http://localhost:3000/fooddonation", {
@@ -39,9 +42,9 @@ function FoodDonation() {
         <h1 className="heading-foodd">FOOD DONATION FORM</h1>
       </div>
       <div className="foodDonation_wrapper">
-        <form  className="food-donation_form" onSubmit={handleSubmit}>
+        <form className="food-donation_form" onSubmit={handleSubmit}>
           <div className="form_element">
-            <label htmlFor="foodName">Food Type</label>
+            <label htmlFor="foodName">Food name</label>
             <input
               type="text"
               id="foodName"
@@ -60,6 +63,27 @@ function FoodDonation() {
               onChange={(event) => setQuantity(event.target.value)}
             />
           </div>
+
+          <div className="form_element">
+            <label htmlFor="foodTag">Food type or tag</label>
+            <select
+              id="foodTag"
+              name="foodTag"
+              value={foodTag}
+              onChange={(event) => setFoodTag(event.target.value)}
+            >
+              <option value="" disabled selected>
+                Choose type
+              </option>
+              <option value="veg" style={{ color: "black" }}>
+                Veg
+              </option>
+              <option value="nonveg" style={{ color: "black" }}>
+                Non Veg
+              </option>
+            </select>
+          </div>
+
           <div className="form_element">
             <label htmlFor="expiryDate">Expiry Date</label>
             <input
@@ -86,8 +110,6 @@ function FoodDonation() {
         </form>
       </div>
     </div>
-
-    
   );
 }
 

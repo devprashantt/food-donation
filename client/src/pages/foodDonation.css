@@ -1,61 +1,69 @@
-.foodDonation_container{
+.foodDonation_container {
     text-align: center;
     justify-content: space-around;
     margin-right: 2rem;
-    background-color:#bebebe;
+    background-color: #bebebe;
     /* border:2px solid #6B5B95; */
     padding: 2rem;
     /* border-radius: 20px; */
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     font-family: sans-serif;
     /* background: linear-gradient(#253D5B, #67697C); */
     background: linear-gradient(#3D405B, #575c85);
     /* background-color: #243b55; */
-    
+
 
     height: 100vh;
     display: flex;
 
 
-    
+
 }
+
 .foodDonation_heading {
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 2rem;
     color: white;
     margin: 2rem;
     margin-bottom: 5rem;
 
 }
-.food-donation_form{
+
+.food-donation_form {
     display: flex;
-   
+
     flex-direction: column;
-    
+
     justify-content: space-around;
 }
 
-.form_element{
+.form_element {
     display: flex;
-    width:auto;
+    width: auto;
     height: 6rem;
     flex-direction: column;
-    
-    
+
+
 }
-.form_element label{
+
+.form_element label {
     display: block;
     margin-bottom: 2px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color:white;
+    color: white;
     text-align: left;
 }
-#foodName, #quantity, #expiryDate, #address{
+
+#foodName,
+#quantity,
+#expiryDate,
+#address,
+#foodTag {
     width: 100%;
-    
+
     padding: 10px 0;
     font-size: 16px;
     color: #fff;
@@ -64,11 +72,9 @@
     border-bottom: 1px solid #fff;
     outline: none;
     background: transparent
-    
-
 }
 
-#foodDonation_submit-btn{
+#foodDonation_submit-btn {
     width: 30%;
     margin: 20px 0;
     height: 50px;
@@ -82,15 +88,15 @@
     margin: auto;
 }
 
-.foodDonation_wrapper{
-    position:absolute;
-    top:50%;
+.foodDonation_wrapper {
+    position: absolute;
+    top: 50%;
     left: 50%;
     width: 500px;
     padding: 40px;
     transform: translate(-50%, -50%);
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, .5);
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
 }

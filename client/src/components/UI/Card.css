@@ -3,13 +3,11 @@
 
 .partner-card{
     max-width: 350px;
-    height: 65vh;
     margin: 10px 60px;
     padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     background-color: #f5f5f5;
     border-radius: 20px;
-    font-family: 'Poppins','sans-serif';
 }
 
 .partner-card img {

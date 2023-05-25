@@ -1,16 +1,15 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.food{
-    height: auto;
+.food {
+    height: 100vh;
     margin-top: 0rem;
-    padding: 0 rem;
+    padding: 2rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    background: linear-gradient(#3D405B, #575c85);
+    background-color: gainsboro;
 }

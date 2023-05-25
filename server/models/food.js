@@ -5,6 +5,10 @@ const foodSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    foodTag: {
+        type: String,
+        required: true,
+    },
     quantity: {
         type: Number,
         required: true,
