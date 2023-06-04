@@ -36,7 +36,7 @@ Food Donation is a web application aimed at connecting individuals and organizat
   ```
 - Start the development server:
   ```
-  npm start
+  npm run dev
   ```
 
 3. Backend Installation:
